@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quizzes</h1>
+
+<%# Ensure we have data %>
+<% if @quizzes && @quizzes.length > 0 %>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Visual media</th>
+        <th>Quiz Duration</th>
+        <th>Access Privilege</th>
+        <th>Questions</th>
+        <th colspan="6"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @quizzes.each do |quiz| %>
+        <tr>
+          <td><%= quiz.title %></td>
+          <td><%= quiz.description %></td>
+          <td><%= quiz.visual_media %></td>
+          <td><%= quiz.quiz_duration %></td>
+          <td><%= quiz.access_privilege %></td>
+          <td><%= quiz.questions.length %></td>
+
+          <td><%= link_to 'Show', quiz %></td>
+          <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
+          <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <h3>No quizzes found.</h3>
+<% end %>
+
+<br>
+
+<%= link_to 'New Quiz', new_quiz_path %>

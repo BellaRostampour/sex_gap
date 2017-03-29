@@ -1,0 +1,32 @@
+<div class="nested-fields">
+  <hr>
+  <table border="1">
+    <tr>
+      <td><%= f.label :title, require: true  %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :description, require: true %></td>
+      <td><%= f.text_area :description, placeholder: "Create Your Answer..." %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :visual_media, require: true %></td>
+      <td><%= f.file_field :visual_media %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :content_group, require: true %></td>
+      <td><%= f.number_field :content_group %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :is_correct, require: true %></td>
+      <td><%= f.check_box :is_correct %></td>
+    </tr>
+  </table>
+
+  <%= link_to_remove_association 'Remove Answer', f %>
+  <hr>
+</div>

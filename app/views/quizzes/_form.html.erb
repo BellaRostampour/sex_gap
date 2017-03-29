@@ -1,0 +1,83 @@
+<%= form_for quiz do |f| %>
+  <% if quiz.errors.any? %>
+      <div id="error_explanation">
+          <h2><%= pluralize(quiz.errors.count, "error") %>
+              prohibited this quiz from being saved:</h2>
+
+          <ul>
+              <% quiz.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
+  <% end %>
+
+  <table border="1">
+      <tr>
+          <div class="field">
+              <td><%= f.label :title %></td>
+              <td><%= f.text_field :title %></td>
+          </div>
+      </tr>
+
+      <tr>
+          <div class="field">
+              <td><%= f.label :description %></td>
+              <td><%= f.text_area :description, placeholder: "Create Your Quiz description..." %></td>
+          </div>
+      </tr>
+
+      <tr>
+          <div class="field">
+              <td><%= f.label :visual_media %></td>
+              <td><%= f.file_field :visual_media %></td>
+          </div>
+      </tr>
+
+      <tr>
+          <div class="field">
+              <td><%= f.label :quiz_duration %></td>
+              <td><%= f.time_field :quiz_duration %></td>
+          </div>
+      </tr>
+
+      <tr>
+          <div class="field">
+              <td><%= f.label :access_privilege %></td>
+              <td><%= f.number_field :access_privilege %></td>
+          </div>
+      </tr>
+  </table>
+
+  <%# TODO: Better implementation of nested questions %>
+  <%# questions and answer sections %>
+  <section>
+      <ul>
+          <li>
+              <h4>Questions</h4>
+          </li>
+
+          <%= f.fields_for :questions do |ff| %>
+          <li>
+              <% render partial: 'quizzes/question_fields', locals: { f: ff } %>
+          </li>
+          <% end %>
+          <% f.fields_for :questions do |ff| %>
+            <li>
+                <% render partial: 'quizzes/question_fields', locals: { f: ff } %>
+            </li>
+          <% end %>
+
+          <li>
+              <div class="links">
+                  <%= link_to_add_association 'Add Question', f, :questions %>
+              </div>
+          </li>
+      </ul>
+  </section>
+
+  <div class="action-submit">
+      <%= f.submit %>
+  </div>
+
+<% end %>

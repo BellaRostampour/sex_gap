@@ -1,0 +1,48 @@
+<div class="nested-fields">
+    <hr>
+    <table border="1">
+        <tr>
+            <td><%= f.label :title, require: true  %></td>
+            <td><%= f.text_field :title %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label :description, require: true %></td>
+            <td><%= f.text_area :description, placeholder: "Create Your Question..." %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label :visual_media, require: true %></td>
+            <td><%= f.file_field :visual_media %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label :question_type, require: true %></td>
+            <td><%= f.number_field :question_type %></td>
+        </tr>
+    </table>
+
+    <%# answers section %>
+    <section>
+        <ul>
+            <li>
+                <h4>Answers</h4>
+            </li>
+
+            <% f.fields_for :answers do |ff| %>
+              <li>
+                  <% render partial: 'quizzes/answer_fields', locals: { f: ff } %>
+              </li>
+            <% end %>
+
+            <li>
+                <div class="links">
+                    <%= link_to_add_association 'Add Answer', f, :answers %>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <%= link_to_remove_association 'Remove Question', f %>
+    <hr>
+</div>

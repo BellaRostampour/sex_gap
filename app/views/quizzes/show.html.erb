@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Visual media</th>
+      <th>Quiz Duration</th>
+      <th>Access Privilege</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @quiz.title %></td>
+        <td><%= @quiz.description %></td>
+        <td><%= @quiz.visual_media %></td>
+        <td><%= @quiz.quiz_duration %></td>
+        <td><%= @quiz.access_privilege %></td>
+      </tr>
+  </tbody>
+</table>
+
+<%# All questions within quizz's relationships %>
+<ul>
+  <% @quiz.questions.each_with_index do |question, index|  %>
+    <li>
+      <hr>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Visual media</th>
+            <th>Question Type</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td><%= question.title %></td>
+              <td><%= question.description %></td>
+              <td><%= question.visual_media %></td>
+              <td><%= question.question_type %></td>
+            </tr>
+        </tbody>
+      </table>
+    </li>
+
+    <li>
+      <ul>
+        <% question.answers.each_with_index do |answer, index| %>
+          <li>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Visual media</th>
+                  <th>content_group</th>
+                  <th>is_correct</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                  <tr>
+                    <td><%= answer.title %></td>
+                    <td><%= answer.description %></td>
+                    <td><%= answer.visual_media %></td>
+                    <td><%= answer.content_group %></td>
+                    <td><%= answer.is_correct %></td>
+                  </tr>
+              </tbody>
+            </table>
+            <hr>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
+<%= link_to 'Back', quizzes_path %>

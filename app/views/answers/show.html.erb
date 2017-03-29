@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @answer.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @answer.description %>
+</p>
+
+<p>
+  <strong>Visual media:</strong>
+  <%= @answer.visual_media %>
+</p>
+
+<p>
+  <strong>Content group:</strong>
+  <%= @answer.content_group %>
+</p>
+
+<p>
+  <strong>Is correct:</strong>
+  <%= @answer.is_correct %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>
