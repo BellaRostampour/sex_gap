@@ -1,35 +1,52 @@
 <h1>Keywords</h1>
 
-<% if @keywords && @keywords.length > 0 %>
 
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th colspan="6"></th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @Keywords.each do |Keywords| %>
-        <tr>
-          <td><%= Keywords.title %></td>
-          <td><%= Keywords.description %></td>
-          
+<%= form_for :search, url: search_path do |t| %>
 
-          <td><%= link_to 'Show', Keywords %></td>
-          <td><%= link_to 'Edit', edit_keywords_path(Keywords) %></td>
-          <td><%= link_to 'Destroy', Keywords, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 
-<% else %>
-  <h3>No keywords found.</h3>
+  
+ <!--<table>
+  <tr>
+    <td>
+       <div class="medium-6 columns">
+           <label>Search based on:
+             <select id="select" required>
+               <option value=""></option>
+               <option value="title">Title</option>
+               <option value="description">Description</option>
+              </select>
+           </label>
+         </td>
+         <td>-->
+            <%= t.text_field :content %>
+        </td>
+      </div>
+
+   </tr>
+   </table>
+  
+  <p>
+   <p>
+      <%= t.submit 'Search' %>
+
+ 
+      <!--<button class="button" type="reset" value="Reset">Reset</button>-->
+   </p>
+  </p>
+    
+ 
 <% end %>
 
-<br>
+<% if @title %>
+  <%= @title.title %>
+<% else %>
+  <p>Could not find <%= params[:content] %></p>
+<% end %>
 
-<%= link_to 'New Keyword', new_keywords_path %>
+ 
+
+
+
+
+
